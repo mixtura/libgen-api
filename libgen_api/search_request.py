@@ -31,7 +31,7 @@ class SearchRequest:
         "Edit",
     ]
 
-    def __init__(self, query, search_type="title"):
+    def __init__(self, query, search_type="default"):
         self.query = query
         self.search_type = search_type
 
@@ -53,6 +53,11 @@ class SearchRequest:
             search_url = (
                 f"https://libgen.is/search.php?req={query_parsed}&column=author"
             )
+        else:
+            search_url = (
+                f"https://libgen.is/search.php?req={query_parsed}"
+            )
+            
         search_page = requests.get(search_url)
         return search_page
 
